@@ -5,7 +5,7 @@ import { testApiKey, fetchAvailableModels, type TestResult, type DiscoveredModel
 import {
   Globe, Key, Cpu, Loader2, Clipboard, Check, ExternalLink,
   AlertCircle, Clock, Trash2, Shield, Search,
-  Zap, Layers, Wrench, ChevronDown, Info,
+  Zap, Wrench, ChevronDown, Info,
 } from 'lucide-vue-next'
 
 const allProviders = getAllProviders()
