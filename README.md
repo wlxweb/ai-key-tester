@@ -4,6 +4,13 @@
   <p align="center">
     <strong>纯浏览器端运行 · 零数据上传 · 零成本测试</strong>
   </p>
+  <p align="center">
+    <a href="https://wlxweb.github.io/ai-key-tester/">🌐 在线预览</a>
+    ·
+    <a href="#快速开始">🚀 快速开始</a>
+    ·
+    <a href="#支持的厂商">📋 支持厂商</a>
+  </p>
 </p>
 
 ---
