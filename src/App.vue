@@ -49,11 +49,11 @@ const avgLatency = computed(() => {
 
 watch(selectedProviderId, (newId) => {
   const p = allProviders.find((x) => x.id === newId)
-  if (p && !isCustom.value) {
+  if (p && newId !== 'custom') {
     inputBaseUrl.value = p.baseUrl
     if (p.models.length > 0) selectedModelId.value = p.models[0].id
     selectedProtocol.value = p.protocol
-  } else if (isCustom.value) {
+  } else if (newId === 'custom') {
     inputBaseUrl.value = ''
     selectedModelId.value = ''
     selectedProtocol.value = 'openai'
@@ -61,7 +61,7 @@ watch(selectedProviderId, (newId) => {
   testResults.value = []
   discoveredModels.value = []
   modelFetchError.value = ''
-})
+}, { immediate: true })
 
 const providerGroups = computed(() => {
   const i18n = ['openai', 'anthropic', 'google']
@@ -240,7 +240,7 @@ function onProtocolBlur(e: FocusEvent) {
                 </div>
                 <div class="relative">
                   <span class="absolute left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"><Globe class="size-3.5" /></span>
-                  <input v-model="inputBaseUrl" class="glass-input pl-10 pr-4 h-11 text-sm" style="font-family: monospace" :placeholder="isCustom ? 'https://your-api.com/v1' : '自动填充...'" />
+                  <input v-model="inputBaseUrl" class="glass-input pl-11 pr-4 h-11 text-sm" style="font-family: monospace" :placeholder="isCustom ? 'https://your-api.com/v1' : '自动填充...'" />
                 </div>
                 <p v-if="isCustom" class="text-xs font-semibold flex items-center gap-1" style="color: #f59e0b"><AlertCircle class="size-3" />建议在 Base URL 末尾添加 <code class="px-1 py-0.5 rounded text-xs" style="background: rgba(245,158,11,0.1); font-family: monospace">/v1</code>（OpenAI 兼容接口）</p>
               </div>
@@ -254,7 +254,7 @@ function onProtocolBlur(e: FocusEvent) {
                 <div class="flex gap-2">
                   <div class="relative flex-1">
                     <span class="absolute left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"><Key class="size-3.5" /></span>
-                    <input v-model="apiKey" :type="showApiKey ? 'text' : 'password'" class="glass-input pl-10 pr-14 h-11 text-sm" style="font-family: monospace" placeholder="sk-xxx…xxxx" />
+                    <input v-model="apiKey" :type="showApiKey ? 'text' : 'password'" class="glass-input pl-11 pr-14 h-11 text-sm" style="font-family: monospace" placeholder="sk-xxx…xxxx" />
                     <button class="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 text-xs font-semibold rounded hover:bg-black/5" style="color: var(--primary)" @click="showApiKey = !showApiKey" type="button">{{ showApiKey ? '隐藏' : '显示' }}</button>
                   </div>
                   <button class="btn-secondary h-11 w-11 flex items-center justify-center shrink-0" style="padding:0" @click="pasteFromClipboard" title="从剪贴板粘贴" type="button"><Clipboard class="size-4" /></button>
