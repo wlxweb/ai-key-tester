@@ -169,7 +169,7 @@ function onProtocolBlur(e: FocusEvent) {
                 <label class="text-sm font-semibold" style="color: var(--text)">选择 AI 厂商</label>
                 <div class="relative provider-dropdown">
                   <button
-                    class="glass-input h-11 flex items-center justify-between gap-2 px-4 text-sm text-left cursor-pointer"
+                    class="glass-input h-11 flex items-center justify-between gap-2 px-4 py-3 text-sm text-left cursor-pointer"
                     @click="providerOpen = !providerOpen"
                     @blur="onProviderBlur"
                     type="button"
@@ -204,7 +204,7 @@ function onProtocolBlur(e: FocusEvent) {
                 <label class="text-sm font-semibold" style="color: var(--text)">测试协议</label>
                 <div class="relative protocol-dropdown">
                   <button
-                    class="glass-input h-11 flex items-center justify-between gap-2 px-4 text-sm text-left cursor-pointer"
+                    class="glass-input h-11 flex items-center justify-between gap-2 px-4 py-3 text-sm text-left cursor-pointer"
                     @click="protocolOpen = !protocolOpen"
                     @blur="onProtocolBlur"
                     type="button"
@@ -240,7 +240,7 @@ function onProtocolBlur(e: FocusEvent) {
                 </div>
                 <div class="relative">
                   <span class="absolute left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"><Globe class="size-3.5" /></span>
-                  <input v-model="inputBaseUrl" class="glass-input pl-11 pr-4 h-11 text-sm" style="font-family: monospace" :placeholder="isCustom ? 'https://your-api.com/v1' : '自动填充...'" />
+                  <input v-model="inputBaseUrl" class="glass-input pl-11 pr-4 py-3 h-11 text-sm" style="font-family: monospace" :placeholder="isCustom ? 'https://your-api.com/v1' : '自动填充...'" />
                 </div>
                 <p v-if="isCustom" class="text-xs font-semibold flex items-center gap-1" style="color: #f59e0b"><AlertCircle class="size-3" />建议在 Base URL 末尾添加 <code class="px-1 py-0.5 rounded text-xs" style="background: rgba(245,158,11,0.1); font-family: monospace">/v1</code>（OpenAI 兼容接口）</p>
               </div>
@@ -254,7 +254,7 @@ function onProtocolBlur(e: FocusEvent) {
                 <div class="flex gap-2">
                   <div class="relative flex-1">
                     <span class="absolute left-4 top-1/2 -translate-y-1/2" style="color: var(--text-muted)"><Key class="size-3.5" /></span>
-                    <input v-model="apiKey" :type="showApiKey ? 'text' : 'password'" class="glass-input pl-11 pr-14 h-11 text-sm" style="font-family: monospace" placeholder="sk-xxx…xxxx" />
+                    <input v-model="apiKey" :type="showApiKey ? 'text' : 'password'" class="glass-input pl-11 pr-14 py-3 h-11 text-sm" style="font-family: monospace" placeholder="sk-xxx…xxxx" />
                     <button class="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 text-xs font-semibold rounded hover:bg-black/5" style="color: var(--primary)" @click="showApiKey = !showApiKey" type="button">{{ showApiKey ? '隐藏' : '显示' }}</button>
                   </div>
                   <button class="btn-secondary h-11 w-11 flex items-center justify-center shrink-0" style="padding:0" @click="pasteFromClipboard" title="从剪贴板粘贴" type="button"><Clipboard class="size-4" /></button>
@@ -275,7 +275,7 @@ function onProtocolBlur(e: FocusEvent) {
                   >
                     <option v-for="m in availableModels" :key="m.id" :value="m.id">{{ m.name }}</option>
                   </select>
-                  <input v-else v-model="selectedModelId" class="glass-input flex-1 h-11 text-sm" style="font-family: monospace" placeholder="输入模型 ID" />
+                  <input v-else v-model="selectedModelId" class="glass-input flex-1 h-11 px-4 py-3 text-sm" style="font-family: monospace" placeholder="输入模型 ID" />
                   <button class="btn-secondary h-11 px-3 gap-1.5 flex items-center shrink-0 font-semibold text-sm" :disabled="!apiKey.trim() || !effectiveBaseUrl.trim() || isFetchingModels" @click="detectModels" type="button">
                     <Loader2 v-if="isFetchingModels" class="size-4 animate-spin" />
                     <Search v-else class="size-4" />
