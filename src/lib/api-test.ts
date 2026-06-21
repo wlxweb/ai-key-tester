@@ -16,6 +16,7 @@ export async function testApiKey(
   baseUrl: string,
   apiKey: string,
   modelId: string,
+  protocolOverride?: 'openai' | 'anthropic' | 'gemini',
 ): Promise<TestResult> {
   const startTime = Date.now()
   const provider = findProvider(providerId)
@@ -25,9 +26,10 @@ export async function testApiKey(
   }
 
   const normalizedBaseUrl = baseUrl.replace(/\/+$/, '')
+  const protocol = protocolOverride || provider?.protocol || 'openai'
 
   try {
-    switch (provider?.protocol || 'openai') {
+    switch (protocol) {
       case 'openai':
         return await testOpenAICompatible(normalizedBaseUrl, apiKey, modelId, startTime)
       case 'anthropic':
